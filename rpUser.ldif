@@ -1,0 +1,13 @@
+dn: CN=rpUser,CN=Schema,CN=Configuration,dc=example,dc=com
+changetype: add
+objectClass: top
+objectClass: classSchema
+governsID: 1.3.6.1.4.1.40789.2012.11.1.2.2.1
+cn: rpUser
+name: rpUser
+lDAPDisplayName: rpUser
+description: RP User
+subClassOf: top
+objectClassCategory: 3
+mayContain: allAccountType
+mayContain: displayNom

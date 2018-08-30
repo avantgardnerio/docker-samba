@@ -1,0 +1,13 @@
+ldapsearch -D "administrator@example.com" -w "pass@word1" -b "dc=example,dc=com"
+ldapmodify -D "administrator@example.com" -w "pass@word1" -f test.ldif
+
+/init.sh setup &
+ldbadd -H /var/lib/samba/private/sam.ldb allAccountType.ldif --option="dsdb:schema update allowed"=true
+ldbmodify -H /var/lib/samba/private/sam.ldb updateUserClass.ldif --option="dsdb:schema update allowed"=true
+ldbmodify -H /var/lib/samba/private/sam.ldb rpUser.ldif --option="dsdb:schema update allowed"=true
+
+ldapmodify -D "administrator@example.com" -w "pass@word1" -f addKeyToUser.ldif
+
+http://david-latham.blogspot.com/2012/12/extending-ad-schema-on-samba4-part-2.html
+https://wiki.samba.org/index.php/Samba_AD_schema_extensions
+

@@ -1,0 +1,12 @@
+dn: CN=displayNom,CN=Schema,CN=Configuration,dc=example,dc=com
+changetype: add
+objectClass: top
+objectClass: attributeSchema
+attributeID: 1.2.840.113556.1.2.998
+cn: displayNom
+name: displayNom
+lDAPDisplayName: displayNom
+description: displayNom
+attributeSyntax: 2.5.5.12
+oMSyntax: 64
+isSingleValued: TRUE

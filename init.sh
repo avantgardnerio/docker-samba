@@ -51,15 +51,15 @@ appSetup () {
 			fi
 		else
 			samba-tool domain provision --use-rfc2307 --domain=${URDOMAIN} --realm=${UDOMAIN} --server-role=dc --dns-backend=SAMBA_INTERNAL --adminpass=${DOMAINPASS} ${HOSTIP_OPTION}
-			if [[ ${NOCOMPLEXITY,,} == "true" ]]; then
-				samba-tool domain passwordsettings set --complexity=off
-				samba-tool domain passwordsettings set --history-length=0
-				samba-tool domain passwordsettings set --min-pwd-age=0
-				samba-tool domain passwordsettings set --max-pwd-age=0
-			fi
+			samba-tool domain passwordsettings set --complexity=off
+			samba-tool domain passwordsettings set --history-length=0
+			samba-tool domain passwordsettings set --min-pwd-age=0
+			samba-tool domain passwordsettings set --max-pwd-age=0
 		fi
+		# http://david-latham.blogspot.com/2012/12/extending-ad-schema-on-samba4.html
 		sed -i "/\[global\]/a \
 			\\\tidmap_ldb:use rfc2307 = yes\\n\
+			dsdb:schema update allowed = true\\n\
 			wins support = yes\\n\
 			template shell = /bin/bash\\n\
 			winbind nss info = rfc2307\\n\

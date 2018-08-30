@@ -1,0 +1,7 @@
+dn: CN=administrator,CN=Users,DC=example,DC=com
+changetype: modify
+add: displayNom
+displayNom: abcdefgh1234
+-
+add: allAccountType
+allAccountType: xyzxyz123456
